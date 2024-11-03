@@ -547,6 +547,16 @@ abstract class GetIt {
   /// As dispose functions can be async, you should await this function.
   Future<void> dropScope(String scopeName);
 
+  /// Disposes all registered factories and singletons in the provided scope
+  /// (in the reverse order in which they were registered),
+  /// then destroys (drops) the scope. If the dropped scope was the last one,
+  /// the previous scope becomes active again.
+  /// if you provided dispose functions on registration, they will be called.
+  /// if you passed a dispose function when you pushed this scope it will be
+  /// called AFTER the scope is dropped.
+  /// As dispose functions can be async, you should await this function.
+  Future<void> dropScopeImmediately(String scopeName);
+
   /// Tests if the scope by name [scopeName] is registered in GetIt
   bool hasScope(String scopeName);
 
